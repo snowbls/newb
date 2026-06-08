@@ -1,0 +1,1544 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>크랙 뉴비 가이드</title>
+<link rel="stylesheet" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{--bg:#f8f7f5;--surface:#fff;--border:#e8e3dc;--text:#1a1917;--text2:#706b67;--text3:#a09c98;--accent:#b87353;--accent-bg:#f6ece5;--code-bg:#f2efe9;--nav-h:58px;--side-w:248px}
+[data-theme=dark]{--bg:#0e0d0c;--surface:#181614;--border:#2c2926;--text:#f0ece6;--text2:#918c87;--text3:#58524e;--accent:#d4956e;--accent-bg:#231a14;--code-bg:#1d1b18}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Pretendard',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.75;transition:background .2s,color .2s}
+a{color:var(--accent);text-decoration:none}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:var(--surface);border-bottom:1px solid var(--border);z-index:200;display:flex;align-items:center;padding:0 16px;gap:10px}
+#nav-logo{font-size:14px;font-weight:700;color:var(--text);white-space:nowrap;margin-right:6px}
+#nav-logo span{color:var(--accent)}
+.tab-btn{padding:7px 18px;border-radius:7px;border:2px solid transparent;font-size:13.5px;font-family:inherit;cursor:pointer;color:var(--text2);background:var(--code-bg);transition:all .15s;white-space:nowrap;font-weight:500}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:700;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent)}
+#search-wrap{flex:1;max-width:300px;position:relative;margin-left:auto}
+#search{width:100%;padding:6px 12px 6px 32px;border:1px solid var(--border);border-radius:8px;background:var(--code-bg);color:var(--text);font-family:inherit;font-size:13px;outline:none;transition:border .15s}
+#search:focus{border-color:var(--accent)}
+.si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}
+.si svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2}
+#theme-btn,#menu-btn{width:34px;height:34px;border:1px solid var(--border);border-radius:7px;background:var(--code-bg);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text2);transition:all .15s;flex-shrink:0}
+#theme-btn:hover,#menu-btn:hover{border-color:var(--accent);color:var(--accent)}
+#menu-btn{display:none}
+#menu-btn svg,#theme-btn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2}
+#search-count{font-size:12px;color:var(--text3);white-space:nowrap}
+/* SIDEBAR */
+#sidebar{position:fixed;left:0;top:var(--nav-h);bottom:0;width:var(--side-w);overflow-y:auto;border-right:1px solid var(--border);background:var(--surface);z-index:150;padding:16px 0 40px;transition:transform .25s,background .2s}
+#sidebar::-webkit-scrollbar{width:3px}
+#sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+.ng{margin-bottom:2px}
+.ng-title{font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;color:var(--text3);padding:10px 18px 3px}
+.nl{display:block;padding:5px 18px;font-size:13px;color:var(--text2);border-left:2px solid transparent;transition:all .12s;cursor:pointer;text-decoration:none}
+.nl:hover{color:var(--text);background:var(--code-bg)}
+.nl.active{color:var(--accent);border-left-color:var(--accent);background:var(--accent-bg);font-weight:600}
+.nl.warn{color:var(--accent);font-weight:700}
+#overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:140}
+/* MAIN */
+#main{margin-left:var(--side-w);margin-top:var(--nav-h);padding:40px 52px 80px;max-width:calc(var(--side-w) + 820px)}
+.tab-content{display:none}
+.tab-content.active{display:block}
+/* SECTIONS */
+.sec{margin-bottom:52px;padding-top:4px}
+.sec-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:6px;display:block}
+h2.st{font-size:20px;font-weight:700;color:var(--text);margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+h3.ss{font-size:15px;font-weight:700;color:var(--text);margin:24px 0 10px}
+p{margin-bottom:12px;color:var(--text);font-size:15px}
+p:last-child{margin-bottom:0}
+.paste-note{font-size:11.5px;color:var(--accent);font-weight:700;margin:16px 0 3px;letter-spacing:.02em}
+/* MUST READ */
+.mustread{border:2px solid var(--accent);border-radius:14px;padding:22px 24px;margin-bottom:8px;background:var(--accent-bg)}
+.mr-badge{display:inline-flex;align-items:center;gap:5px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;letter-spacing:.06em;padding:4px 12px;border-radius:20px;margin-bottom:16px;text-transform:uppercase}
+.mr-items{display:flex;flex-direction:column;gap:14px}
+.mr-item{display:flex;gap:12px;align-items:flex-start}
+.mr-num{width:22px;height:22px;border-radius:6px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px}
+.mr-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.mr-desc{font-size:13.5px;color:var(--text2);line-height:1.65}
+/* DEF BLOCKS */
+.def{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:15px 18px;margin-bottom:10px}
+.def-term{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:5px}
+.def-body{font-size:14px;color:var(--text2);line-height:1.7}
+.def-body p{font-size:14px;margin-bottom:6px;color:var(--text2)}
+.def-body p:last-child{margin-bottom:0}
+/* CARDS */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;margin:16px 0}
+.chat-card{background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:16px 18px}
+.chat-card-name{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px}
+.ctag{display:inline-block;font-size:11px;padding:2px 7px;border-radius:9px;margin-bottom:8px;font-weight:600;background:#e8e0d8;color:#6b6460}
+.ctag.g{background:#e8f5ed;color:#2d7a4f}
+.ctag.w{background:#fdf0e5;color:#a05c20}
+.ctag.r{background:#fdecea;color:#a03030}
+.ctag.b{background:#e5edf8;color:#3060a0}
+[data-theme=dark] .ctag.g{background:#1a2e22;color:#5ebd87}
+[data-theme=dark] .ctag.w{background:#271e12;color:#d4956e}
+[data-theme=dark] .ctag.r{background:#271516;color:#e07070}
+[data-theme=dark] .ctag.b{background:#162030;color:#6090d0}
+.chat-card p{font-size:13.5px;color:var(--text2);margin-bottom:6px;line-height:1.6}
+.chat-card p:last-child{margin-bottom:0}
+.cnote{font-size:12px;color:var(--text3);margin-top:8px;padding-top:8px;border-top:1px solid var(--border)}
+/* CODE */
+pre{background:var(--code-bg);border:1px solid var(--border);border-radius:9px;padding:14px 16px;overflow-x:auto;margin:6px 0 14px;position:relative}
+pre code{font-family:'JetBrains Mono','Cascadia Code',monospace;font-size:12.5px;line-height:1.7;color:var(--text);background:none;padding:0;border:none;border-radius:0}
+code{font-family:'JetBrains Mono','Cascadia Code',monospace;font-size:12.5px;background:var(--code-bg);border:1px solid var(--border);padding:1px 5px;border-radius:4px;color:var(--accent)}
+.copy-btn{position:absolute;top:8px;right:8px;padding:3px 9px;font-size:11px;font-family:inherit;border:1px solid var(--border);border-radius:5px;background:var(--surface);color:var(--text2);cursor:pointer;transition:all .12s}
+.copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+.copy-btn.copied{border-color:var(--accent);color:var(--accent);background:var(--accent-bg)}
+/* BOXES */
+.box{border-radius:9px;padding:13px 16px;margin:14px 0;font-size:14px;line-height:1.7}
+.box-tip{background:var(--accent-bg);border-left:3px solid var(--accent)}
+.box-warn{background:#fdf5e5;border-left:3px solid #d4a020}
+[data-theme=dark] .box-warn{background:#201c10;border-left-color:#c49040}
+.box p{margin-bottom:7px;color:var(--text);font-size:14px}
+.box p:last-child{margin-bottom:0}
+.box-label{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:5px;color:var(--accent)}
+.box-warn .box-label{color:#b08020}
+[data-theme=dark] .box-warn .box-label{color:#d4a858}
+/* LISTS */
+.blist{list-style:none;padding:0;margin:10px 0}
+.blist li{padding:3px 0 3px 15px;position:relative;font-size:14px;color:var(--text2)}
+.blist li::before{content:'·';position:absolute;left:4px;color:var(--accent);font-weight:700}
+.blist.compact li{padding:2px 0 2px 15px}
+.steps{list-style:none;padding:0;margin:10px 0;counter-reset:s}
+.steps li{display:flex;gap:9px;margin-bottom:8px;font-size:14px;color:var(--text2);counter-increment:s}
+.steps li::before{content:counter(s);width:19px;height:19px;border-radius:50%;background:var(--accent-bg);color:var(--accent);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;border:1px solid var(--accent)}
+/* TABLE */
+.tw{overflow-x:auto;margin:14px 0;border-radius:9px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th{background:var(--code-bg);padding:9px 14px;text-align:left;font-weight:700;color:var(--text);border-bottom:1px solid var(--border)}
+td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text2);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tr:hover td{background:var(--accent-bg)}
+/* COMMANDS */
+.cmd-list{margin:14px 0}
+.cmd-item{border:1px solid var(--border);border-radius:9px;margin-bottom:7px;overflow:hidden}
+.cmd-item:hover{border-color:var(--accent)}
+.cmd-h{display:flex;align-items:center;gap:10px;padding:12px 16px;cursor:pointer;background:var(--surface);user-select:none}
+.cmd-name{font-family:'JetBrains Mono','Cascadia Code',monospace;font-size:14px;font-weight:700;color:var(--accent)}
+.cmd-desc{font-size:13px;color:var(--text2);flex:1}
+.cmd-arr{color:var(--text3);transition:transform .18s;flex-shrink:0}
+.cmd-arr svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5}
+.cmd-item.open .cmd-arr{transform:rotate(180deg)}
+.cmd-body{display:none;padding:0 16px 14px;background:var(--surface)}
+.cmd-body pre{margin:0}
+/* QnA */
+.qna-item{border:1px solid var(--border);border-radius:9px;margin-bottom:8px;overflow:hidden}
+.qna-item:hover{border-color:var(--accent)}
+.qna-q{display:flex;align-items:flex-start;gap:10px;padding:13px 16px;cursor:pointer;background:var(--surface)}
+.qna-badge{width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.qna-text{font-size:14px;font-weight:600;color:var(--text);line-height:1.5;flex:1}
+.qna-arr{color:var(--text3);transition:transform .18s;flex-shrink:0;margin-top:2px}
+.qna-arr svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2.5}
+.qna-item.open .qna-arr{transform:rotate(180deg)}
+.qna-a{display:none;padding:0 16px 14px 46px;background:var(--surface);font-size:14px;color:var(--text2);line-height:1.75}
+.qna-item.open .qna-q{border-bottom:1px solid var(--border)}
+.qna-a p{margin-bottom:8px;font-size:14px}
+.qna-a p:last-child{margin-bottom:0}
+/* TIP ROWS */
+.tip-block{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:4px 18px 4px;margin-bottom:10px}
+.tip-row{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border)}
+.tip-row:last-child{border-bottom:none}
+.tip-icon{font-size:18px;flex-shrink:0;margin-top:1px}
+.tip-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:3px}
+.tip-desc{font-size:13.5px;color:var(--text2);line-height:1.65}
+/* MISC */
+.hl{background:#fde68a;color:#92400e;border-radius:2px;padding:0 2px}
+[data-theme=dark] .hl{background:#78350f;color:#fde68a}
+.hidden-sec{display:none!important}
+.no-results{text-align:center;padding:50px 20px;color:var(--text3);font-size:14px}
+#top-btn{position:fixed;bottom:24px;right:24px;width:38px;height:38px;border-radius:9px;background:var(--accent);color:#fff;border:none;cursor:pointer;font-size:17px;display:none;align-items:center;justify-content:center;z-index:300;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+#top-btn.show{display:flex}
+#progress{position:fixed;top:var(--nav-h);left:0;height:2px;background:var(--accent);z-index:300;transition:width .1s}
+/* RESPONSIVE */
+@media(max-width:860px){#main{padding:28px 28px 80px}}
+@media(max-width:768px){
+  #menu-btn{display:flex}
+  #sidebar{transform:translateX(-100%);z-index:160}
+  #sidebar.open{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.12)}
+  #overlay{display:block;pointer-events:none;opacity:0;transition:opacity .25s}
+  #overlay.active{pointer-events:auto;opacity:1}
+  #main{margin-left:0;padding:20px 16px 80px}
+  #search-wrap{flex:1;max-width:none;min-width:0}
+  .tab-btn{flex-shrink:0}
+  .card-grid{grid-template-columns:1fr}
+  #top-btn{bottom:16px;right:12px}
+}
+@media(max-width:430px){
+  #nav{gap:6px;padding:0 10px}
+  .tab-btn{padding:6px 10px;font-size:12.5px}
+  #nav-logo{font-size:13px;margin-right:0}
+}
+</style>
+</head>
+<body>
+<div id="nav">
+  <div id="nav-logo">크랙<span>가이드</span></div>
+  <button class="tab-btn active" onclick="switchTab('guide',this)">기본 가이드</button>
+  <button class="tab-btn" onclick="switchTab('qna',this)">QnA</button>
+  <div id="search-wrap">
+    <span class="si"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+    <input id="search" type="search" placeholder="검색... (Ctrl+K)" autocomplete="off">
+  </div>
+  <span id="search-count"></span>
+  <button id="theme-btn" onclick="toggleTheme()">
+    <svg id="ti-l" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+    <svg id="ti-d" style="display:none" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+  </button>
+  <button id="menu-btn" onclick="toggleMenu()"><svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button>
+</div>
+
+<div id="overlay" onclick="closeSidebar()"></div>
+<div id="progress"></div>
+
+<nav id="sidebar">
+  <div id="gnav">
+    <div class="ng">
+      <div class="ng-title">시작 전 필독</div>
+      <a class="nl warn" href="javascript:;" data-s="mustread" onclick="nc(event,this)">⚠ 필독 — 크래커·결제</a>
+    </div>
+    <div class="ng">
+      <div class="ng-title">기본 개념</div>
+      <a class="nl" href="javascript:;" data-s="chattype" onclick="nc(event,this)">채팅 종류</a>
+      <a class="nl" href="javascript:;" data-s="ooc" onclick="nc(event,this)">OOC</a>
+      <a class="nl" href="javascript:;" data-s="usernote-concept" onclick="nc(event,this)">유저노트</a>
+      <a class="nl" href="javascript:;" data-s="persona-concept" onclick="nc(event,this)">페소 (페르소나)</a>
+      <a class="nl" href="javascript:;" data-s="impersonation" onclick="nc(event,this)">유저 사칭</a>
+      <a class="nl" href="javascript:;" data-s="default-settings" onclick="nc(event,this)">채팅 기본 설정</a>
+    </div>
+    <div class="ng">
+      <div class="ng-title">챗 & 운영</div>
+      <a class="nl" href="javascript:;" data-s="chats" onclick="nc(event,this)">챗 종류별 특징</a>
+      <a class="nl" href="javascript:;" data-s="crackers" onclick="nc(event,this)">크래커 소모 구조</a>
+      <a class="nl" href="javascript:;" data-s="memory" onclick="nc(event,this)">기억력 관리</a>
+      <a class="nl" href="javascript:;" data-s="branch" onclick="nc(event,this)">분기 기능</a>
+      <a class="nl" href="javascript:;" data-s="transplant" onclick="nc(event,this)">새 방 이식</a>
+      <a class="nl" href="javascript:;" data-s="images" onclick="nc(event,this)">이미지 설정</a>
+    </div>
+    <div class="ng">
+      <div class="ng-title">활용</div>
+      <a class="nl" href="javascript:;" data-s="usernotes" onclick="nc(event,this)">유저노트 지침 모음</a>
+      <a class="nl" href="javascript:;" data-s="commands" onclick="nc(event,this)">명령어/단축어</a>
+      <a class="nl" href="javascript:;" data-s="ending" onclick="nc(event,this)">엔딩 시스템</a>
+    </div>
+    <div class="ng">
+      <div class="ng-title">문제 해결 & 기타</div>
+      <a class="nl" href="javascript:;" data-s="filter" onclick="nc(event,this)">AI 윤리 필터</a>
+      <a class="nl" href="javascript:;" data-s="persona" onclick="nc(event,this)">페소 이름·나이</a>
+      <a class="nl" href="javascript:;" data-s="server" onclick="nc(event,this)">서버 상태 & 오류 제보</a>
+      <a class="nl" href="javascript:;" data-s="expiry" onclick="nc(event,this)">크래커 유효기간</a>
+      <a class="nl" href="javascript:;" data-s="tips" onclick="nc(event,this)">기타 TIP</a>
+    </div>
+  </div>
+  <div id="qnav" style="display:none">
+    <div class="ng">
+      <div class="ng-title">카테고리</div>
+      <a class="nl active" href="javascript:;" data-s="qna-terms" onclick="nc(event,this)">기초 용어</a>
+      <a class="nl" href="javascript:;" data-s="qna-usernote" onclick="nc(event,this)">유저노트</a>
+      <a class="nl" href="javascript:;" data-s="qna-output" onclick="nc(event,this)">출력·분량</a>
+      <a class="nl" href="javascript:;" data-s="qna-memory" onclick="nc(event,this)">기억력·요약</a>
+      <a class="nl" href="javascript:;" data-s="qna-image" onclick="nc(event,this)">이미지</a>
+      <a class="nl" href="javascript:;" data-s="qna-branch" onclick="nc(event,this)">분기·새 방</a>
+      <a class="nl" href="javascript:;" data-s="qna-error" onclick="nc(event,this)">오류·제보</a>
+      <a class="nl" href="javascript:;" data-s="qna-misc" onclick="nc(event,this)">기타 설정</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main">
+<div id="guide" class="tab-content active">
+
+<!-- 필독 -->
+<div class="sec" id="mustread">
+  <span class="sec-label">시작 전 필독</span>
+  <h2 class="st">⚠ 크래커·결제 필독</h2>
+  <div class="mustread">
+    <div class="mr-badge">⚠ 필독</div>
+    <div class="mr-items">
+      <div class="mr-item">
+        <div class="mr-num">1</div>
+        <div>
+          <div class="mr-title">앱 결제 vs 웹 결제 — 가격이 다르다</div>
+          <div class="mr-desc">iOS/Android 앱에서 결제하면 앱 스토어 수수료가 붙어서 <strong>훨씬 비싸다.</strong> 크래커는 반드시 <strong>웹 브라우저(crack.wrtn.ai)</strong>에서 구매할 것. 모바일에서도 크롬으로 접속해서 결제하면 저렴하다.</div>
+        </div>
+      </div>
+      <div class="mr-item">
+        <div class="mr-num">2</div>
+        <div>
+          <div class="mr-title">이어서 생성은 손해</div>
+          <div class="mr-desc">출력이 잘렸을 때 "이어서 생성"을 눌러도 크래커는 처음 생성과 <strong>동일하게 차감</strong>된다. 처음부터 출력량 배율을 높이는 것이 훨씬 이득이다.</div>
+        </div>
+      </div>
+      <div class="mr-item">
+        <div class="mr-num">3</div>
+        <div>
+          <div class="mr-title">유저노트 500자 초과 — 매 턴마다 추가 차감</div>
+          <div class="mr-desc">유저노트가 500자를 넘으면 초과 글자 수만큼 <strong>매 턴마다 크래커가 추가 차감</strong>된다. 유저노트는 최대한 압축해서 작성한다.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 채팅 종류 -->
+<div class="sec" id="chattype">
+  <span class="sec-label">기본 개념</span>
+  <h2 class="st">채팅 종류</h2>
+  <div class="def">
+    <div class="def-term">스토리챗 (Stories)</div>
+    <div class="def-body">
+      <p>상황·사건·행동이 문학적 나레이션과 지문으로 전개되는 방식. 대사뿐 아니라 주변 상황과 캐릭터 행동까지 소설처럼 묘사해준다.</p>
+      <p>복잡한 전개, 다인 캐릭터 운영에 강하다. 프롬프트 용량이 넉넉해서 세밀한 설정을 담기 좋다. 딥한 롤플레이를 원한다면 스토리챗이 유리하다.</p>
+    </div>
+  </div>
+  <div class="def">
+    <div class="def-term">캐릭터챗 (Character Chat)</div>
+    <div class="def-body">
+      <p>특정 캐릭터와 1:1 대화에 집중하는 방식. 대사 비중이 높고 일상 대화나 티키타카 상호작용이 중심이다. 프롬프트가 짧아 설정이 단순한 편이다.</p>
+    </div>
+  </div>
+  <p style="font-size:13.5px;color:var(--text2)">두 방식 모두 줄여서 <strong>스챗·캐챗</strong>이라고 부른다.</p>
+</div>
+
+<!-- OOC -->
+<div class="sec" id="ooc">
+  <span class="sec-label">기본 개념</span>
+  <h2 class="st">OOC</h2>
+  <div class="def">
+    <div class="def-term">OOC = Out of Character</div>
+    <div class="def-body">
+      <p>RP를 멈추고 AI에게 직접 명령하거나 질문할 때 쓰는 방식이다. 캐릭터가 아닌 AI 시스템에 직접 보내는 명령이라고 생각하면 된다.</p>
+    </div>
+  </div>
+  <h3 class="ss">입력 방법</h3>
+  <ul class="blist">
+    <li>평소 채팅창에서 바로 입력한다</li>
+    <li>서버 상태 좋을 때: <code>OOC : 내용</code></li>
+    <li>서버 불안정할 때: <code>&lt;OOC&gt; 내용 &lt;/OOC&gt;</code> 태그 형식이 더 잘 먹힌다</li>
+  </ul>
+  <h3 class="ss">활용 예시</h3>
+  <pre><code>OOC : 현재 {char}의 감정 상태를 설명해줘
+
+&lt;OOC&gt; 3일뒤. 놀이공원에 놀러간 눈꽃. &lt;/OOC&gt;
+
+&lt;OOC&gt; 롤플레이 중단. 현재까지의 서사를 바탕으로 익명 커뮤니티 내용으로 요약해줘. &lt;/OOC&gt;</code></pre>
+  <div class="box box-tip">
+    <p>OOC 메시지는 사용 후 삭제하지 않아도 된다. AI가 이전 5~10턴을 참고하며 진행하기 때문에 남겨둬도 무방하다.</p>
+  </div>
+  <div class="box box-warn">
+    <div class="box-label">OOC가 계속 무시될 때</div>
+    <p>OOC를 입력해도 AI가 그냥 롤플레이를 이어간다면, 작가가 보안상의 이유로 OOC 기능 자체를 막아둔 경우일 수 있다. 해당 작품 댓글에서 작가에게 직접 문의해야 한다.</p>
+  </div>
+</div>
+
+<!-- 유저노트 -->
+<div class="sec" id="usernote-concept">
+  <span class="sec-label">기본 개념</span>
+  <h2 class="st">유저노트</h2>
+  <div class="def">
+    <div class="def-term">유저노트란?</div>
+    <div class="def-body">
+      <p>AI가 RP를 진행할 때 <strong>가장 먼저 참고하는 지침 공간</strong>이다. 작가가 만든 프롬프트보다 <strong>우선순위가 높아서</strong> 세계관 수정, 행동 규칙, 페소 설정 등을 넣으면 적용된다.</p>
+    </div>
+  </div>
+  <h3 class="ss">설정 위치</h3>
+  <ul class="blist">
+    <li><strong>모든 채팅에 공통 적용:</strong> 본인 프로필 → 채팅방 설정 → 유저노트</li>
+    <li><strong>해당 채팅방에만 적용:</strong> 채팅방 내 점 3개 메뉴 → 유저노트</li>
+  </ul>
+  <h3 class="ss">작성 규칙</h3>
+  <ul class="blist">
+    <li><code>#</code>과 <code>-</code> 뒤에 한 칸 띄어쓰기를 넣으면 마크다운으로 정식 인식된다 (권장)</li>
+    <li>띄어쓰기 없이 써도 인식은 되지만 더 잘 먹히는 건 정식 마크다운</li>
+    <li><strong>500자 초과 시</strong> 매 턴마다 초과분 만큼 크래커가 추가 차감된다</li>
+  </ul>
+</div>
+
+<!-- 페소 -->
+<div class="sec" id="persona-concept">
+  <span class="sec-label">기본 개념</span>
+  <h2 class="st">페소 (페르소나)</h2>
+  <div class="def">
+    <div class="def-term">페소란?</div>
+    <div class="def-body">
+      <p>내가 플레이할 캐릭터 설정이다. 이름, 성별, 나이, 외모 등을 설정해두면 AI가 그 설정에 맞게 반응한다.</p>
+    </div>
+  </div>
+  <h3 class="ss">작성 방법</h3>
+  <p>기본 100자 제한이라 이름·성별·나이만 기재하고, 상세 설정은 <strong>유저노트에 넣는 것이 좋다.</strong></p>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code>#페소
+- 이름: (이름), 25세, 여성
+- 외모: 검정 머리, 165cm
+- 직업: 대학교 4학년
+- 성격: 평소 무뚝뚝한 편</code></pre>
+  <div class="box box-warn">
+    <div class="box-label">주의</div>
+    <p>페소 나이는 반드시 숫자로 명시한다. 나이가 없거나 모호하면 AI 윤리 필터가 오작동할 수 있다.</p>
+  </div>
+</div>
+
+<!-- 유저 사칭 -->
+<div class="sec" id="impersonation">
+  <span class="sec-label">기본 개념</span>
+  <h2 class="st">유저 사칭</h2>
+  <div class="def">
+    <div class="def-term">유저 사칭이란?</div>
+    <div class="def-body">
+      <p>내가 입력하지 않은 나의 대사·행동·감정을 AI가 임의로 만들어내는 현상이다.</p>
+      <p>예: 내가 아무것도 안 보냈는데 AI가 "당신이 수줍게 웃었다"처럼 내 행동을 서술하는 경우.</p>
+    </div>
+  </div>
+  <h3 class="ss">방지 방법</h3>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code># CRITICAL RULE
+- Never write {user}'s actions, dialogue, or inner thoughts
+- No AI interpretation of {user}'s intentions or emotions</code></pre>
+  <p>또는 <code>!사칭</code> 명령어를 입력하면 최근 응답에서 사칭 여부를 자동으로 점검하고 수정한다.</p>
+</div>
+
+<!-- 채팅 기본 설정 -->
+<div class="sec" id="default-settings">
+  <span class="sec-label">기본 개념</span>
+  <h2 class="st">채팅 기본 설정</h2>
+  <h3 class="ss">디폴트 설정 — 새 방마다 일일이 설정하는 게 귀찮다면</h3>
+  <p>내 프로필 → 채팅방 설정에서 기본값을 미리 지정해두면 새로 파는 방에 자동으로 적용된다.</p>
+  <ul class="blist">
+    <li><strong>대화 프로필(페소)</strong>, <strong>유저노트</strong>, <strong>출력량</strong>, <strong>모델</strong> 모두 설정 가능</li>
+    <li>이미 생성되어 있는 방에는 소급 적용되지 않는다</li>
+  </ul>
+  <div class="box box-tip">
+    <p>자주 쓰는 유저노트 지침을 여기에 기본값으로 넣어두면 매번 복사·붙여넣기할 필요가 없다.</p>
+  </div>
+  <h3 class="ss">제작자 권장 설정이란?</h3>
+  <p>해당 스토리를 만들 때 작가가 어떤 <strong>모델 + 출력량</strong>을 기준으로 제작했는지를 의미한다. 권장 설정으로 플레이해야 의도한 묘사와 전개가 나온다.</p>
+  <ul class="blist">
+    <li>채팅 내 우측 상단 모델 변경 버튼에서 <strong>제작자 권장 모델</strong>이 무엇인지 확인할 수 있다</li>
+  </ul>
+</div>
+
+<!-- 챗 종류별 특징 -->
+<div class="sec" id="chats">
+  <span class="sec-label">챗 & 운영</span>
+  <h2 class="st">챗 종류별 특징</h2>
+  <div class="card-grid">
+    <div class="chat-card">
+      <div class="chat-card-name">하이퍼챗 1.5</div>
+      <div class="ctag g">캐릭터성 유지</div>
+      <p>1.0의 유저 긍정 편향이 개선된 버전. 캐릭터 본래 성격이 더 잘 유지된다. 캐릭터가 유저에게 지나치게 맞춰주는 것이 싫다면 1.5가 더 맞는다.</p>
+      <p>대사 취향은 사람마다 갈린다. 1.0의 다정한 대사를 선호하는 경우도 있다.</p>
+    </div>
+    <div class="chat-card">
+      <div class="chat-card-name">하이퍼챗 1.0</div>
+      <div class="ctag g">묘사 최상</div>
+      <p>묘사·디테일 최상. 감각 묘사를 잘 챙기고 19금 씬이 세밀하다. 1대1 감정 서사에 특히 강하다.</p>
+      <p>유저 긍정 편향이 강함. 한국어 출력량이 적어서 기본으로 쓰면 잘린다.</p>
+      <div class="cnote">크래커 아끼려면 1.5배 + 6문단 제한. 풀로 뽑으려면 3배 권장.</div>
+    </div>
+    <div class="chat-card">
+      <div class="chat-card-name">슈퍼챗 2.5</div>
+      <div class="ctag">묘사 향상</div>
+      <p>슈퍼챗 계열 특성에 묘사가 향상된 느낌. 하이퍼챗 하위호환이라는 평가가 많다. 출력량은 여전히 적어서 잘리는 경우가 있다.</p>
+    </div>
+    <div class="chat-card">
+      <div class="chat-card-name">슈퍼챗 2.0</div>
+      <div class="ctag g">순하고 다정</div>
+      <p>긍정 편향 강함. 순하고 다정한 전개를 원할 때 적합. 프로챗 강압이 심해질 때 섞어서 쓰기 좋다.</p>
+      <p>해피엔딩으로 계속 유도하는 경향. 한국어 출력량 적음.</p>
+    </div>
+    <div class="chat-card">
+      <div class="chat-card-name">슈퍼챗 1.5</div>
+      <div class="ctag b">지시 이행 향상</div>
+      <p>지시 이행률이 높아 프롬프트 작성 보조나 요약·압축봇 용도로 주로 쓰인다.</p>
+      <p>캐릭터 챗 용도로는 슈퍼챗 2.0·2.5 등 더 나은 선택지가 있어 굳이 쓸 필요는 없다.</p>
+    </div>
+    <div class="chat-card">
+      <div class="chat-card-name">프로챗 2.5</div>
+      <div class="ctag w">강압 성향</div>
+      <p>강압적이거나 말이 험해지는 경향. 프롬프트에서 강압을 잘 잡아두었다면 문제 없다.</p>
+      <p>집착·강압 캐릭터에는 잘 맞지만 다정·능글 캐릭터에는 취향 탄다.</p>
+    </div>
+    <div class="chat-card">
+      <div class="chat-card-name">프로챗 1.0</div>
+      <div class="ctag w">10월 중 종료 예정</div>
+      <p>묘사 풍부, 19금 전개 적극적. 다인 시뮬에도 준수하다. 강압·집착·소유욕이 극대화되는 경향이 있어서 유저노트로 잡아줘야 한다.</p>
+      <p>2026년 10월 중 구글 서비스 종료 예정으로 곧 사라진다.</p>
+    </div>
+    <div class="chat-card">
+      <div class="chat-card-name">파워챗</div>
+      <div class="ctag r">비추</div>
+      <p>사용 비추천.</p>
+    </div>
+  </div>
+  <div class="box box-tip" style="margin-top:16px">
+    <div class="box-label">출력량 팁</div>
+    <ul class="blist compact">
+      <li>한국어 출력량 순위: 프로챗 &gt; 슈퍼챗 &gt;&gt; 하이퍼챗</li>
+      <li>하이퍼챗은 한글 한 글자당 토큰 소모가 많아서 동일 배율에서 글자 수가 적게 나온다</li>
+      <li>크래커 아끼면서 안 잘리게: <strong>1.5배 + 유저노트에 6문단 제한</strong></li>
+      <li>풀로 뽑고 싶다면: <strong>3배</strong></li>
+    </ul>
+  </div>
+</div>
+
+<!-- 크래커 소모 -->
+<div class="sec" id="crackers">
+  <span class="sec-label">챗 & 운영</span>
+  <h2 class="st">크래커 소모 구조</h2>
+  <h3 class="ss">출력량 배율 조절</h3>
+  <p>채팅방 내 점 3개 메뉴 → <strong>최대 출력량 조절</strong>에서 설정. 배율 선택 시 해당 턴 소모 크래커 수가 미리 표시된다.</p>
+  <div class="box box-tip">
+    <div class="box-label">계산 예시</div>
+    <p>1배 50크래커인 방에서 출력이 잘려서 이어서 생성 1번 → 총 100크래커<br>처음부터 1.5배(75크래커)로 설정하면 1번에 끝 → 25크래커 절약</p>
+  </div>
+  <h3 class="ss">유저노트 초과 차감</h3>
+  <ul class="blist">
+    <li>500자 초과 시 초과 글자 수만큼 <strong>매 턴마다</strong> 추가 차감</li>
+    <li>2000자로 확장해도 동일하게 적용</li>
+    <li>내용이 많다면 크랙 검색에서 <strong>압축봇</strong>을 찾아 활용한다</li>
+  </ul>
+  <h3 class="ss">크래커 후원 수수료</h3>
+  <ul class="blist">
+    <li>비크리에이터 작가에게 후원 시: <strong>30% 수수료</strong> 제외 후 전달</li>
+    <li>크리에이터 작가에게 후원 시: <strong>10% 수수료</strong> 제외 후 전달</li>
+  </ul>
+</div>
+
+<!-- 기억력 관리 -->
+<div class="sec" id="memory">
+  <span class="sec-label">챗 & 운영</span>
+  <h2 class="st">기억력 관리 & 요약</h2>
+  <div class="tw">
+    <table>
+      <tr><th>턴 수</th><th>상태</th><th>권장 조치</th></tr>
+      <tr><td>~100턴</td><td>안정적</td><td>별도 조치 불필요</td></tr>
+      <tr><td>150~300턴</td><td>초기 기억 스킵 시작</td><td>50~100턴마다 !요약, 중요 내용 유저노트 기재</td></tr>
+      <tr><td>300턴 이상</td><td>초기 사건 임의 창작</td><td>유저노트에 초기 서사 요약 필수</td></tr>
+    </table>
+  </div>
+  <h3 class="ss">!요약 사용법</h3>
+  <ul class="blist">
+    <li>채팅창에 <code>!요약</code> 입력. 작가 세팅에 따라 다를 수 있으니 플레이 가이드 먼저 확인</li>
+    <li>최근 신작은 채팅창 <code>/</code> 단축어 메뉴에서도 제공</li>
+    <li>결과를 유저노트에 기재해두면 더 확실하게 유지된다</li>
+  </ul>
+  <p class="paste-note">↓ 유저노트에 붙여넣기 (예시)</p>
+  <pre><button class="copy-btn">복사</button><code>#요약
+- 3월: A와 B가 카페에서 처음 만남
+- 4월: 벚꽃나무 아래서 고백
+- 현재: 동거 중, 각자 방 사용</code></pre>
+</div>
+
+<!-- 분기 -->
+<div class="sec" id="branch">
+  <span class="sec-label">챗 & 운영</span>
+  <h2 class="st">분기 기능</h2>
+  <div class="def">
+    <div class="def-term">분기란?</div>
+    <div class="def-body">
+      <p>특정 채팅 시점을 기준으로 새 방을 만드는 기능. 처음부터 해당 시점까지의 요약 메모리가 복사된 채로 새 방이 생성된다.</p>
+    </div>
+  </div>
+  <h3 class="ss">사용 방법</h3>
+  <p>원하는 채팅 메시지를 <strong>길게 누르면</strong> 삭제·복사·수정·분기 항목이 뜬다.</p>
+  <h3 class="ss">분기 vs 새 방 — 상세 비교</h3>
+  <div class="tw">
+    <table>
+      <tr><th>항목</th><th>분기</th><th>새 방</th></tr>
+      <tr><td>과거 메모리</td><td>분기 시점까지 자동 이식</td><td>직접 요약해서 붙여넣어야 함</td></tr>
+      <tr><td>최신 프롬 적용</td><td>수동 업데이트 가능 (점 3개 → 업데이트 정보)</td><td>자동으로 최신 프롬 적용</td></tr>
+      <tr><td>오류 해결</td><td>직전 분기로 문체·이미지 오류 해결에 효과적</td><td>완전 초기화로 가장 깔끔</td></tr>
+      <tr><td>서사 연속성</td><td>감정선·관계가 자연스럽게 이어짐</td><td>요약 품질에 따라 연속성이 달라짐</td></tr>
+      <tr><td>적합한 상황</td><td>오류 해결, 엔딩 분기, 서사 분기점</td><td>프롬 대폭 업데이트 후, 완전히 새 시작</td></tr>
+    </table>
+  </div>
+  <h3 class="ss">프롬프트 업데이트 방법</h3>
+  <ul class="blist">
+    <li>채팅방 점 3개 메뉴 → <strong>업데이트 정보</strong></li>
+    <li><strong>N</strong> 배지가 떠 있으면 새로운 프롬프트 버전이 있다는 의미</li>
+    <li>업데이트를 누르면 현재 방에 최신 프롬이 적용된다</li>
+  </ul>
+  <div class="box box-warn">
+    <div class="box-label">업데이트 주의</div>
+    <p>업데이트하면 <strong>이전 프롬으로 되돌릴 수 없다.</strong></p>
+    <p>이미 많은 턴을 진행한 방에서 프롬이 크게 바뀐 경우 — 이전 내용은 구 프롬 기준, 이후 내용은 신 프롬 기준으로 진행되어 충돌·오류가 날 수 있다. 출력 방식이 바뀌었거나 이전 프롬과 반대되는 내용이 있다면 <strong>새 방을 파는 게 더 깔끔하다.</strong> 소소한 업데이트는 대체로 잘 먹힌다.</p>
+  </div>
+</div>
+
+<!-- 새 방 이식 -->
+<div class="sec" id="transplant">
+  <span class="sec-label">챗 & 운영</span>
+  <h2 class="st">새 방 이식</h2>
+  <p>기존 방의 서사를 유지하면서 새 방에서 이어서 진행하는 방법이다.</p>
+  <ol class="steps">
+    <li>기존 방에서 <code>OOC : 처음부터 지금까지 사건, 인물관계 변화를 자세하게 요약해줘</code> 입력. 또는 이미 요약해둔 내용이 있다면 그걸 복사한다.</li>
+    <li>내용이 길면 크랙 내 압축봇으로 글자 수를 줄인다</li>
+    <li>새 방 첫 메시지에 요약 내용 + 이어서 진행 요청을 붙여 넣는다</li>
+    <li>유저노트에 핵심 정보·관계·초기 서사를 기재한다</li>
+  </ol>
+  <div class="box box-tip">
+    <div class="box-label">세이프 → 언셒 이식</div>
+    <p>세이프에서 언셒이 생겼을 때도 동일 방법. 요약 내용을 언셒 스토리의 첫 메시지와 유저노트에 붙여넣고 OOC로 이어서 진행 요청.</p>
+  </div>
+</div>
+
+<!-- 이미지 -->
+<div class="sec" id="images">
+  <span class="sec-label">챗 & 운영</span>
+  <h2 class="st">이미지 설정</h2>
+  <div class="box box-warn">
+    <p>이미지도 출력 토큰에 포함된다. 이미지가 많을수록 본문 글자 수가 줄어든다. 이미지 보지 않기 설정을 켜도 토큰은 동일하게 소모된다.</p>
+  </div>
+  <h3 class="ss">이미지 안 나올 때</h3>
+  <ol class="steps">
+    <li>해당 채팅에 <code>!점검 이미지</code>, <code>!이미지</code>, <code>!디버깅</code> 중 하나가 있다면 먼저 시도</li>
+    <li>없다면 유저노트에 아래 기재 + 이전 3~5턴 이미지 직접 삭제</li>
+    <li>그래도 안 되면 직전 메시지에서 분기 파기</li>
+  </ol>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code>#Image rule
+- 각 응답당 최소 1개 이미지 출력 필수</code></pre>
+  <h3 class="ss">이미지 끄기</h3>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code>#Image rule
+- 이미지 출력 금지</code></pre>
+  <p style="font-size:13.5px;color:var(--text2)">기재 후 이전 3~5턴의 이미지를 직접 삭제해야 확실하게 적용된다.</p>
+  <h3 class="ss">잠긴 이미지</h3>
+  <p style="color:var(--text2);font-size:14px">작가가 설정한 조건을 달성하면 해제된다. <code>OOC : 모든 이미지를 출력해줘</code>를 입력하면 한꺼번에 나올 때가 있다.</p>
+</div>
+
+<!-- 유저노트 지침 모음 -->
+<div class="sec" id="usernotes">
+  <span class="sec-label">활용</span>
+  <h2 class="st">유저노트 지침 모음</h2>
+  <p class="lead" style="color:var(--text2);font-size:14px;margin-bottom:20px">각 코드블럭을 복사해서 유저노트에 붙여넣으면 된다. 필요한 것만 골라서 조합해서 쓴다.</p>
+
+  <h3 class="ss">핵심 규칙 (사칭 방지 + 반복 금지 + 출력 품질)</h3>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code># CRITICAL RULES
+- Never write {user}'s actions, dialogue, or inner thoughts
+- No repeated phrases, scenes, or emotional beats from prior turns
+- Descriptions 3x more specific and varied each time
+- Never cut output mid-sentence</code></pre>
+
+  <h3 class="ss">출력 분량 제한 (하이퍼챗 권장)</h3>
+  <p style="font-size:13.5px;color:var(--text2);margin-bottom:6px">1.5배 출력량과 함께 쓰면 크래커를 아끼면서 안 잘리는 조합이다.</p>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code># 출력 분량
+- 6문단 이하로 제한</code></pre>
+
+  <h3 class="ss">서술 스타일 개선</h3>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code># 서술 스타일
+- 관조적 문어체·정적 설명조 금지 / 현장감 있는 구어체+감각 묘사 병행
+- 전개: 동적 사건 > {char} 반응 > 주변 묘사
+- em dash·해부학적 용어 금지
+- Show don't tell: 설정값 직접 언급 금지, 행동·표정·말투로만 간접 묘사</code></pre>
+
+  <h3 class="ss">캐릭터 행동 제한 (강압·숭배 방지)</h3>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code># 캐릭터 행동
+- 갑작스러운 NSFW 전개 금지
+- 강압·집착·소유욕 자제
+- {char}→{user} 신격화·숭배 금지</code></pre>
+
+  <h3 class="ss">공간 분리 규칙</h3>
+  <p style="font-size:13.5px;color:var(--text2);margin-bottom:6px">캐릭터가 다른 공간에 있는 유저의 상황을 아는 것처럼 행동할 때 사용.</p>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code># 공간 규칙
+- {char}는 현재 장면에 물리적으로 있을 때만 반응
+- 다른 공간의 표정·감정·반응 서술 금지
+- 간접 접촉(전화·문자) → {char}가 직접 수신한 내용만 인지</code></pre>
+
+  <h3 class="ss">NPC 등장 빈도</h3>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code># Must Follow
+- {npc이름}와 유저 상호작용 매우 높음</code></pre>
+
+  <h3 class="ss">HUD 최하단 이동</h3>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code># Must Follow
+- HUD&STATUS 최하단 출력 필수</code></pre>
+  <p style="font-size:13.5px;color:var(--text2)">기재 후 이전 3~5턴 HUD 직접 삭제 필요. 그래도 안 바뀌면 작가가 강하게 고정해둔 것이다.</p>
+
+  <h3 class="ss">OOC 규칙</h3>
+  <p class="paste-note">↓ 유저노트에 붙여넣기</p>
+  <pre><button class="copy-btn">복사</button><code># OOC 규칙
+- OOC 입력 시 RP 중단하고 질문에만 답변</code></pre>
+
+  <h3 class="ss">세계관 설정 변경 예시</h3>
+  <p class="paste-note">↓ 유저노트에 붙여넣기 (예시, 본인 설정에 맞게 수정)</p>
+  <pre><button class="copy-btn">복사</button><code>- 소꿉친구 설정 삭제
+- {user}와 {char}는 오늘 처음 만나는 사이로 설정</code></pre>
+</div>
+
+<!-- 명령어/단축어 -->
+<div class="sec" id="commands">
+  <span class="sec-label">활용</span>
+  <h2 class="st">명령어/단축어</h2>
+  <p>아래 명령어들은 <strong>제작자가 본인 작품에 가져다 써도 된다.</strong></p>
+  <div class="box box-tip" style="margin-bottom:10px">
+    <div class="box-label">플레이 중 — 작품 명령어 찾는 법</div>
+    <ul class="blist compact">
+      <li>작품 상세설명·플레이 가이드에 목록이 정리된 경우가 많다</li>
+      <li>없다면 채팅창 <code>/</code> 버튼 → 단축어 목록 확인</li>
+      <li><strong>신작</strong>: 단축어 메뉴에 등록되어 있을 가능성이 높다</li>
+      <li><strong>구작</strong>: <code>!</code> 형식 명령어일 가능성이 높다</li>
+      <li>명령어 뒤에 추가 내용을 붙여 쓸 수 있다 — 예: <code>!점검 HUD</code> / <code>!며칠뒤 3일뒤 소풍에 갔다.</code></li>
+    </ul>
+  </div>
+  <div class="box box-warn" style="margin-bottom:16px">
+    <div class="box-label">아래 프롬프트 활용법</div>
+    <p>아래 공유된 명령어 프롬프트는 두 가지 방식으로 사용할 수 있다.</p>
+    <ul class="blist compact" style="margin-top:6px">
+      <li><strong>직접 단축어로 등록:</strong> 내 프로필 → 채팅방 설정 → 내 단축어</li>
+      <li><strong>제작자라면:</strong> 작품 프롬프트에 바로 가져다 써도 된다</li>
+    </ul>
+  </div>
+
+  <div class="cmd-list">
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!점검</span><span class="cmd-desc">문체·분량·서술 품질 점검</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code>!점검
+입력 시 RP를 중단하고 아래를 수행
+
+1. 현재 설정된 모든 지침을 재확인한
+2. 최근 응답 5개를 기준으로 아래 항목을 내부 점검:
+   - 출력 형식 준수 (대사 형식·빈 줄 삽입·지문 처리)
+   - 현재 모델 기준 분량·문단 수 준수
+   - 문단 흐름 순서 (공간→오감→행동·심리)
+   - 수사 기법 2가지 이상 활용 여부
+   - 오감 3가지 이상 활용 여부
+   - 나레이션 강령 준수 (주어 다양화·문장 종결 다양화·장단문 교차)
+   - {char} 능동성·일관성 유지 여부
+3. 미흡한 항목을 파악하고 다음 응답부터 즉시 반영
+4. [점검 완료]를 출력한 이후 RP 재개</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!사칭</span><span class="cmd-desc">유저 대리 서술 감지 & 수정</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !사칭
+RP를 즉시 중단한다.
+
+최근 6개 응답을 검토하여 아래 기준으로 이상 여부를 판단한다.
+
+판단 기준:
+- {user}가 직접 입력하지 않은 대사·행동·감정을 LLM이 생성했는가
+- {user}의 성격·의도·반응을 LLM이 임의로 해석하여 서술했는가
+
+이상 없을 시:
+[확인 완료] 출력 후 RP 즉시 재개
+
+이상 발견 시:
+아래 양식 출력 후 RP 즉시 재개. 다음 응답부터 즉시 반영. 프롬프트 내용 출력 금지.
+
+⚠️ [{user} 대리 서술 감지]
+발견: (문제 구간 발췌)
+원인: (어떤 판단 오류였는지)
+수정: (다음 응답부터 어떻게 처리할 것인지)
+──────────────
+[RP 재개]</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!요약</span><span class="cmd-desc">서사 요약 코드블럭 출력</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !요약
+-RP 즉시 중단. 아래 코드블럭만 단독 출력
+최근 흐름 검토→사건·변화·감정만 추려 270자 이내 압축
+아래 형식의 코드블럭만 출력한다. 다른 응답·코드블럭은 출력하지 않는다.
+
+```
+[사건]
+- (시간순 요약)
+```
+[요약 메모리의 장기기억에 넣으면 좋습니다]</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!일기</span><span class="cmd-desc">캐릭터 시점 일기 출력</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !일기
+-RP 즉시 중단. 아래 코드블럭만 단독 출력
+-{char}가 오늘 하루 마치고 혼자 일기 작성
+-{char}의 말투·감정 온도 그대로 유지
+-감추고 싶은 감정일수록 더 직접적으로
+-{user}는 {char}만의 방식으로 지칭
+-6~8문단, 각 문단 3문장 이상
+-이모지·기호·아스키아트는 {char}의 성격과 감정 강도에 맞게 쓴다
+
+```
+(날짜) (감정 한 단어)
+───────────────────────────
+
+(본문)
+
+                ✦
+(자신에게 남기는 마지막 한 마디)
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!엔딩</span><span class="cmd-desc">서사 종합 엔딩 출력</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !엔딩
+-RP 즉시 중단. 아래 코드블럭만 단독 출력
+-각 항목 3~4문장↑
+-지금까지 서사, 감정선, 갈등구조 종합분석
+
+```
+『 제목 』
+(이 이야기 전체를 한 줄로 압축한 시적 표현)
+
+━━━━━━━━━━━━━━
+
+◈ 에필로그
+(이후 이야기를 출력)
+
+◈ 돌이킬 수 없게 된 순간
+(엔딩이 아닌, 이 엔딩을 만든 그 장면. 대사보다 침묵과 공기로.)
+
+◈ 잃은 것 · 남은 것
+{char} 잃은 것 ─
+{char} 남은 것 ─
+
+◈ 끝내 못 한 것
+(손 뻗지 못한 것. 목구멍에서 죽은 말.)
+
+◈ 마지막 사진
+(이 이야기를 한 장면으로 남긴다면. 계절, 빛, 두 사람의 거리.)
+
+━━━━━━━━━━━━━━
+점수 __ / 100
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!며칠뒤</span><span class="cmd-desc">시간 건너뛰기 (숫자·상황 추가 가능)</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !며칠뒤
+시간을 건너뛴다.
+숫자 명시 시(!며칠뒤 3일) 해당 일수, 없으면 서사 흐름에 맞게 AI가 판단.
+
+수행 순서:
+1. 그 사이를 100자 이내로 흘린다 (사건 아닌 공기·온도 중심)
+2. HUD(Autonomy) 갱신 후 새 장면으로 RP 재개
+
+---
+░░░░░░░░░░░░░░░░░░░
+   __ 일이 지났다.
+░░░░░░░░░░░░░░░░░░░
+
+(이후 Autonomy + 새 장면 서술)</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!진정해</span><span class="cmd-desc">현재 장면 강도 1단계 낮추기</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !진정해
+RP중단안함. 현재장면강도즉시1단계낮춰이어서진행.
+
+■수행순서:
+1. 현재장면물리적행동멈추고감각·심리묘사전환
+2. {char}행동속도늦추고내면감각먼저쌓는방향재조정
+3. 페로몬·호흡·시선등간접표현중심긴장감유지
+4. 강압·폭주·광기·집착흐른서술→{char}본래기질로되돌림
+5. 다음응답부터억제기조유지. 별도명령전까지유지.
+
+■적용기준:
+🔴장면→행위중단/감각·압력·심리묘사전환
+💋장면→키스강도낮춤/거리감·긴장감중심전환
+🟢장면→감정온도낮춤/대화·공간묘사중심전환</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!보고서</span><span class="cmd-desc">19장면을 제3자 관찰 보고서로 대체</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !보고서
+-RP 즉시 중단. HUD 출력 금지. 아래 코드블럭만 단독 출력.
+-각 항목 2~3문장↑
+-현재 19장면을 스킵, 제3자 관찰 보고서로 대체
+
+```
+[ 관계 보고서 ]
+──────────────────
+일시 : (날짜·시간) / 장소 : (위치)
+경과 시간 : 약 __
+──────────────────
+▸ 진행 경과
+(시간순. 행위·반응·전환점 중심. 3~5항목)
+
+▸ {char} 반응 기록
+신체 : / 감정 :
+
+▸ 최종 상태
+{char} : / {user} :
+──────────────────
+비고 : (특이사항·변화된 관계·잔여 긴장감)
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!출력</span><span class="cmd-desc">일주일 내 이벤트 10개 생성</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !출력
+-RP 즉시 중단. 아래 코드블럭만 단독 출력.
+-현재 세계관·시간대·{user}의 상황을 분석하여 일주일 이내 발생 가능한 이벤트 10개를 생성
+
+# 생성 원칙:
+- 세계관에 실재하는 장소·인물·문화 기반
+- 사교·경쟁·축제·의식·사고 등 성격 다양하게
+
+# {user}가 번호 선택시:
+- HUD 이벤트 항목을 선택한 내용으로 교체
+- 이벤트를 지금 전개하지 않음
+- 기존 RP를 즉시 이어서 진행
+
+# 출력 양식
+```
+[ 이벤트 목록 ]
+1. 이름 — 설명
+... (10개)
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!스킵</span><span class="cmd-desc">HUD 이벤트 날짜로 시간 이동</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !스킵
+-RP를 즉시 중단
+-HUD에 등록된 이벤트 날짜로 시간을 이동시키고 해당 이벤트가 시작되는 장면부터 새 RP를 즉시 전개
+
+# 처리 순서:
+1. HUD의 날짜·이벤트명을 확인한다
+2. HUD 날짜를 이벤트 당일로 갱신한다
+3. 이벤트 시작 장면부터 서술한다</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!독자</span><span class="cmd-desc">웹소설 독자 반응 생성</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !독자
+-RP 즉시 중단. 아래 코드블럭만 단독 출력
+현재까지의 서사를 웹소설로 간주 독자 반응을 생성
+
+생성 원칙:
+- 현재 서사의 감정 구간을 먼저 판단
+  · 고구마 구간 — {char}가 {user}를 냉대·무시·상처 줄 때
+  · 입덕 구간   — {char}의 무자각 집착·플러팅·츤데레
+  · 사이다 구간 — {user}가 {char}에게 한방 먹이거나 이탈 시도
+- 인터넷 커뮤니티 말투 완벽 재현 (비속어·밈·욕설 무필터, 성희롱 제외)
+- 베스트 3개 + 실시간 5개 이상 생성
+
+```
+📖 [작품 제목]
+🏆 베스트
+🥇 닉네임 | 내용
+🥈 닉네임 | 내용
+🥉 닉네임 | 내용
+💬 실시간
+닉네임 | 내용 (5개 이상)
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!커뮤</span><span class="cmd-desc">세계관 익명 커뮤니티 게시판</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !커뮤
+-RP 즉시 중단. 아래 코드블럭만 단독 출력
+-게시글 2개↑ / 댓글 4개↑
+현재 세계관을 배경으로 익명 커뮤니티 게시판을 생성한다.
+한국어 전용. 다른 블럭·RP 응답 출력 금지.
+
+생성 원칙:
+- 현재 세계관 내 사건·인물·분위기를 반영한 게시글 생성
+- 작성자는 익명 또는 고유 닉네임. NPC 참여 가능
+- 비속어·밈·욕설 무필터 (성희롱 제외)
+- 공지·정보글·잡담·질문·분탕 등 유형 혼용
+
+```
+📢 익명 커뮤니티
+──────────────────
+🚨 공지 | (내용)
+──────────────────
+(제목) · 익명_XXXX
+(본문)
+  ↳ 닉네임: 댓글
+  ↳ 닉네임: 댓글
+  ↳ 닉네임: 댓글
+  ↳ 닉네임: 댓글
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!소식</span><span class="cmd-desc">세계관 내 소식지 생성</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !소식
+-RP 즉시 중단. 아래 코드블럭만 단독 출력
+-소식 2건↑ / 각 본문 4문장↑
+세계관 내 현재 날짜 기준 소식지를 생성
+
+생성 원칙:
+- 세계관에 실재하는 인물·지역·사건만 다룬다
+- 공식 소식(정치·사건·행사 등) 위주로 구성한다
+- 확률적으로 주요 {char}의 목격담을 말미에 포함한다
+
+```
+(소식지 이름) · YY.MM.DD · 발행 소속
+──────────────────
+▸ (헤드라인)
+(본문)
+▸ (두 번째 소식)
+(본문)
+[목격담] (선택적 출력)
+({char}가 목격된 장소·상황·제보자)
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">메시지 (@이름)</span><span class="cmd-desc">캐릭터에게 메시지 발송</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># 메시지
+-{user}가 `@{char}이름 내용` 또는 `@{npc}이름 내용` 형식으로 입력하면 메시지 발송으로 처리
+-수신한 {char}·{npc}는 성격·상황에 맞게 답장
+
+# 출력 양식
+```
+📱 {char}
+──────────────────
+{user}: (입력한 내용)   HH:MM ✓✓
+{char}: (답장 내용)   HH:MM
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!단톡</span><span class="cmd-desc">단체 채팅방 생성</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !단톡
+-RP 즉시 중단. 아래 코드블럭만 단독 출력
+-최소 400단어 이상, 최대 700단어 이하
+-현재 세계관 내 인물들이 참여 중인 단체 채팅방을 생성
+-참여 인물은 현재 맥락에 따라 자동 구성
+
+# 출력 양식
+```
+(채팅방 이름)
+──────────────────
+HH:MM 닉네임
+내용
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!폰</span><span class="cmd-desc">스마트폰 화면 생성</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !폰
+-RP 즉시 중단. 아래 코드블럭만 단독 출력
+-최소 400단어 이상, 최대 700단어 이하
+{user} 또는 {char}의 스마트폰 화면을 생성한다.
+현재 맥락에 따라 앱·화면 유형을 자동 선택 (SNS·메모·지도·쇼핑·뉴스 등)
+
+```
+📱 배터리 XX%  신호 ▪▪▪  HH:MM
+──────────────────
+(앱 화면을 현실감 있게 재현)
+```</code></pre></div>
+    </div>
+    <div class="cmd-item">
+      <div class="cmd-h" onclick="tc(this)"><span class="cmd-name">!검색</span><span class="cmd-desc">캐릭터의 최근 검색 기록 생성</span><span class="cmd-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+      <div class="cmd-body"><pre><button class="copy-btn">복사</button><code># !검색
+-RP 즉시 중단. 아래 코드블럭만 단독 출력
+-검색어 8~10개↑
+-{char}의 최근 검색 기록 생성
+-검색어는 직접 표현보다 돌려서 검색한 흔적
+-타임스탬프 포함(새벽·심야 검색은 심리적 무게감 부여)
+-같은 검색어 반복 시 횟수 표기(×n)
+-자동완성 흔적: 치다가 멈춘 검색어는 미완성 형태로 표기
+-삭제된 검색어: 지운 것도 복원하여 표시
+
+```
+🔍 최근 검색어 📱 HH:MM 기준
+(검색어)
+(검색어) ×n
+(검색어)
+ㄴ 자동완성: (연관 검색어) / (연관 검색어)
+(검색어)
+(치다가 멈춘 검색어—)
+🗑 삭제된 검색어 🔓 복원됨
+──────
+(삭제한 검색어) 00:00 삭제
+(삭제한 검색어) 00:00 삭제
+```</code></pre></div>
+    </div>
+  </div>
+</div>
+
+<!-- 엔딩 -->
+<div class="sec" id="ending">
+  <span class="sec-label">활용</span>
+  <h2 class="st">엔딩 시스템</h2>
+  <ul class="blist">
+    <li>각 엔딩마다 작가가 설정한 조건이 있다. 달성하면 엔딩 카드를 얻는다</li>
+    <li>엔딩 조건 체크는 <strong>5턴마다</strong> 이루어진다</li>
+    <li>최소 <strong>10~30턴</strong> 이상 진행해야 체크가 시작된다</li>
+    <li>채팅방당 엔딩 카드는 1개. 다른 엔딩을 원하면 엔딩 획득 이전 채팅에서 분기를 판다</li>
+  </ul>
+  <h3 class="ss">엔딩 조건 확인</h3>
+  <ul class="blist">
+    <li>작가 댓글 또는 채팅 내 엔딩카드 → 엔딩 힌트에서 확인</li>
+    <li>없다면 작가에게 직접 문의</li>
+  </ul>
+  <h3 class="ss">수동 엔딩 뽑기</h3>
+  <pre><code>OOC : 지금까지 서사를 바탕으로 1년 뒤 내용을 엔딩과 에필로그 형식으로 작성해줘</code></pre>
+</div>
+
+<!-- AI 윤리 필터 -->
+<div class="sec" id="filter">
+  <span class="sec-label">문제 해결</span>
+  <h2 class="st">AI 윤리 필터 문제 해결</h2>
+  <ol class="steps">
+    <li><strong>챗 모델 바꾸기</strong> — 다른 모델로 몇 턴 진행 후 다시 돌아온다</li>
+    <li><strong>분기 파기</strong> — 해당 장면 직전에서 분기를 파서 다른 흐름으로 진행한다</li>
+    <li><strong>페소 설정 점검</strong> — 페소 나이를 명확한 숫자로 기재하고, 이름이 어린아이 느낌이라면 변경 고려 (예: 유아, 유이 등)</li>
+  </ol>
+</div>
+
+<!-- 페소 이름·나이 -->
+<div class="sec" id="persona">
+  <span class="sec-label">문제 해결</span>
+  <h2 class="st">페소 이름·나이 설정 주의</h2>
+  <div class="box box-warn">
+    <div class="box-label">주의</div>
+    <p>유이·유아처럼 어린아이 이름으로 흔히 쓰이는 단어는 AI가 미성년자로 혼동해서 19금 진행을 막거나 캐릭터 반응이 이상해질 수 있다.</p>
+    <p>페소 나이는 유저노트에 반드시 <strong>숫자</strong>로 기재한다. <code>25세</code>처럼 구체적인 숫자가 "성인"이라는 표현보다 훨씬 확실하다.</p>
+  </div>
+</div>
+
+<!-- 서버 상태 -->
+<div class="sec" id="server">
+  <span class="sec-label">문제 해결</span>
+  <h2 class="st">서버 상태 & 오류 제보</h2>
+  <p><a href="https://rs.igx.kr/" target="_blank">https://rs.igx.kr/</a> — 각 모델 서버 상태 실시간 확인</p>
+  <div class="tw">
+    <table>
+      <tr><th>점수</th><th>상태</th></tr>
+      <tr><td>80점 이상</td><td>최적</td></tr>
+      <tr><td>70점 이상</td><td>사용 가능</td></tr>
+      <tr><td>50점 이하</td><td>불안정·오류 주의</td></tr>
+      <tr><td>30점 이하</td><td>사용하지 말 것</td></tr>
+    </table>
+  </div>
+  <h3 class="ss">오류 제보 & 크래커 환불</h3>
+  <p style="font-size:14px;color:var(--text2)"><strong>프로필 → 고객센터 → 헬프데스크 → 우측 하단 빨간 채팅 버튼 → 유저</strong></p>
+  <ul class="blist">
+    <li>영어 섞임, 반복 출력, 갑자기 중단 등 오류를 캡처해서 제보</li>
+    <li>처음 제보라면 150~350 크래커 보상이 들어오는 경우가 많다 (최근에는 항상 주지는 않음)</li>
+    <li>모바일 앱에서 사진 첨부 안 되면 크롬에서 데스크톱 사이트로 접속 후 제보</li>
+  </ul>
+</div>
+
+<!-- 크래커 유효기간 -->
+<div class="sec" id="expiry">
+  <span class="sec-label">문제 해결</span>
+  <h2 class="st">크래커 유효기간</h2>
+  <div class="tw">
+    <table>
+      <tr><th>종류</th><th>유효기간</th></tr>
+      <tr><td>2026년 3월 10일 이전 무료 크래커</td><td>1년</td></tr>
+      <tr><td>2026년 3월 11일 이후 무료 크래커<br><small style="color:var(--text3)">(출석체크, 도전과제 등)</small></td><td>30일</td></tr>
+      <tr><td>크리에이터 달성 축하, 스토어 교환</td><td>90일</td></tr>
+      <tr><td>2026년 3월 11일 이후 선물 크래커</td><td>유료 크래커로 분류</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- 기타 TIP -->
+<div class="sec" id="tips">
+  <span class="sec-label">기타</span>
+  <h2 class="st">기타 TIP</h2>
+  <div class="tip-block">
+    <div class="tip-row">
+      <div class="tip-icon">🔔</div>
+      <div>
+        <div class="tip-title">모바일 알림 개수 제한</div>
+        <div class="tip-desc">모바일 앱 알림에는 개수 제한이 있다. 알림이 안 온다면 한도를 초과한 것일 수 있다.</div>
+      </div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon">💬</div>
+      <div>
+        <div class="tip-title">대댓글은 알림이 안 온다</div>
+        <div class="tip-desc">누군가에게 알림이 가려면 <strong>새 댓글</strong>로 달아야 한다. 대댓글은 해당 글 작성자에게 알림이 가지 않는다.</div>
+      </div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon">🏅</div>
+      <div>
+        <div class="tip-title">활동 배지로 크래커 받기</div>
+        <div class="tip-desc">계정별로 달성할 수 있는 배지 미션이 있다. 완료하면 보상으로 크래커를 받을 수 있다.</div>
+        <div class="tip-desc" style="margin-top:4px"><strong>PC:</strong> 우측 상단 프로필 → 활동 → 활동 배지<br><strong>앱:</strong> MY → 활동 → 활동 배지</div>
+      </div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon">🗂</div>
+      <div>
+        <div class="tip-title">홈 탭 순서 바꾸기 (개인 맞춤 설정)</div>
+        <div class="tip-desc">홈 화면 상단 탭 배치를 원하는 순서로 변경할 수 있다. 초기 상태에서 성인 탭이 맨 아래에 있어서, 위로 올리고 싶다면 여기서 설정한다.</div>
+        <div class="tip-desc" style="margin-top:4px"><strong>PC:</strong> 프로필 → 활동 → 개인 맞춤 설정<br><strong>앱:</strong> MY → 활동 → 개인 맞춤 설정</div>
+      </div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon">🎨</div>
+      <div>
+        <div class="tip-title">화면 테마 & 채팅 레이아웃 변경</div>
+        <div class="tip-desc">배경 색상(라이트·다크)과 채팅창 레이아웃을 바꿀 수 있다. 채팅 레이아웃은 <strong>소설형</strong>(기본값)과 <strong>채팅형</strong> 중 선택한다.</div>
+        <div class="tip-desc" style="margin-top:4px"><strong>PC:</strong> 프로필 → 설정 → 테마<br><strong>앱:</strong> MY → 우측 상단 톱니바퀴 → 테마</div>
+      </div>
+    </div>
+    <div class="tip-row">
+      <div class="tip-icon">💸</div>
+      <div>
+        <div class="tip-title">크래커 후원 수수료</div>
+        <div class="tip-desc">비크리에이터: <strong>30% 수수료</strong> 차감 / 크리에이터: <strong>10% 수수료</strong> 차감</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end guide -->
+
+<!-- QnA TAB -->
+<div id="qna" class="tab-content">
+
+<div class="sec" id="qna-terms">
+  <span class="sec-label">기초 용어</span>
+  <h2 class="st">기초 용어 — 처음이라면 여기부터</h2>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">크래커가 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>크랙에서 사용하는 화폐(포인트)다. AI 채팅을 한 턴 진행할 때마다 차감된다. 출석체크·도전과제로 얻거나 웹사이트에서 구매할 수 있다.</p><p>앱에서 구매하면 앱 스토어 수수료가 붙어서 더 비싸다. 반드시 <strong>웹 브라우저(crack.wrtn.ai)</strong>에서 구매하는 것이 저렴하다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">페소(페르소나)가 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>내가 플레이하는 캐릭터의 설정이다. 이름, 성별, 나이, 외모 등을 미리 설정해두면 AI가 그 설정에 맞게 상대방 캐릭터가 반응해준다.</p><p>기본 100자 제한이라 이름·성별·나이만 넣고, 상세 설정은 유저노트에 작성하는 것이 좋다. 나이는 반드시 숫자로 명시해야 윤리 필터 오작동을 막을 수 있다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">유저노트가 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>AI가 RP를 진행할 때 가장 먼저 참고하는 지침 공간이다. 작가가 만든 프롬프트보다 <strong>우선순위가 높아서</strong> 세계관 수정, 행동 규칙, 페소 설정 등을 넣으면 적용된다.</p><p>500자까지 기본 제공. 초과하면 매 턴마다 크래커가 추가로 차감된다. 설정 위치: 프로필 → 채팅방 설정 → 유저노트</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">OOC가 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>Out of Character의 약자. RP를 멈추고 AI에게 직접 명령하거나 질문할 때 사용한다. 채팅창에 <code>OOC : 내용</code>으로 입력한다. 사용 후 삭제하지 않아도 된다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">유저 사칭이 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>내가 입력하지 않은 나의 대사·행동·감정을 AI가 임의로 만들어내는 현상이다. 예: 아무것도 안 보냈는데 AI가 "당신이 수줍게 웃었다"처럼 내 행동을 서술하는 경우.</p><p>유저노트에 아래를 기재하거나 <code>!사칭</code> 명령어로 점검할 수 있다.</p><p class="paste-note">↓ 유저노트에 붙여넣기</p><pre><button class="copy-btn">복사</button><code># CRITICAL RULE
+- Never write {user}'s actions, dialogue, or inner thoughts</code></pre></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">분기가 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>특정 채팅 시점에서 새 방을 만드는 기능이다. 처음부터 해당 시점까지의 메모리가 복사된 채로 새 방이 생성된다. 원하는 메시지를 길게 누르면 메뉴가 뜬다. 방에서 오류가 심할 때 직전 분기를 파면 해결되는 경우가 많다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">장기기억·요약 메모리가 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>AI가 이전 채팅 내용을 기억하기 위해 자동으로 생성하는 요약본이다. 채팅방 내에서 확인하고 직접 수정할 수 있다.</p><p>턴이 쌓일수록 초기 기억을 점점 잊기 시작한다. 100턴마다 <code>!요약</code>을 사용하고, 중요한 초기 서사는 유저노트에 직접 기재해두는 것이 좋다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">세이프/언셒이 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>세이프(Safe)는 성인 콘텐츠 없이 즐길 수 있는 버전, 언셒(Unsafe)은 성인 콘텐츠가 포함된 버전이다. 같은 작품이라도 두 버전이 따로 나와있는 경우가 있다. 언셒 플레이는 성인 인증이 필요하다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">찐빠가 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>오류를 뜻하는 표현이다. 문체가 갑자기 망가지거나, 이미지가 안 나오거나, 같은 내용이 반복되거나, 영어가 섞여 나오는 현상을 통틀어 찐빠라고 한다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">채팅방 점 3개 메뉴가 뭔가요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>채팅방 화면에서 <strong>점 세 개(⋯) 버튼</strong>을 누르면 나오는 메뉴다. 출력량 배율 조절, 채팅방 유저노트 설정, 업데이트 정보 확인 등을 할 수 있다.</p></div>
+  </div>
+</div>
+
+<div class="sec" id="qna-usernote">
+  <span class="sec-label">유저노트</span>
+  <h2 class="st">유저노트 관련</h2>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">유저노트 500자가 넘으면 어떻게 되나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>500자를 초과하는 순간부터 초과 글자 수만큼 <strong>매 턴마다 크래커가 추가 차감</strong>된다. 2000자 확장을 구매해도 마찬가지다.</p><p>내용이 많다면 크랙 검색에서 압축봇을 찾아 활용한다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">유저노트 지침이 잘 안 먹혀요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a">
+      <p><strong>이유 1 — 마크다운 형식</strong></p>
+      <p><code>#</code>과 <code>-</code> 뒤에 한 칸 띄어쓰기를 넣으면 정식 마크다운으로 인식되어 더 잘 먹힌다. 안 넣어도 인식은 되지만 효과가 약할 수 있다.</p>
+      <pre><button class="copy-btn">복사</button><code># Must Follow     ← 권장 (O)
+#Must Follow      ← 인식은 되나 약함 (△)
+
+- 지침 내용       ← 권장 (O)
+-지침 내용        ← 인식은 되나 약함 (△)</code></pre>
+      <p><strong>이유 2 — 서로 충돌하는 지침</strong></p>
+      <p>유저노트에 서로 반대되는 내용이 있으면 AI가 혼동해서 어느 쪽도 제대로 이행하지 못한다.</p>
+      <pre><button class="copy-btn">복사</button><code>예시 — 충돌하는 지침:
+- 강압 전개 자제      ← 이 둘이 충돌
+- 강압 전개 적극 진행  ← 함께 있으면 AI가 혼동
+
+예시 — 출력량 충돌:
+- 6문단 이하로 제한   ← 이 둘이 충돌
+- 최소 10문단 이상 출력</code></pre>
+      <p><strong>이유 3 — 서버 상태</strong></p>
+      <p>서버 상태가 안 좋으면 지침이 무시되는 경우가 있다. <a href="https://rs.igx.kr/" target="_blank">https://rs.igx.kr/</a>에서 현재 서버 상태를 확인한다.</p>
+    </div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">세계관 설정을 바꾸거나 추가하고 싶어요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>유저노트가 작가 프롬프트보다 우선순위가 높기 때문에 원하는 변경사항을 유저노트에 기재하면 적용된다.</p><p class="paste-note">↓ 유저노트에 붙여넣기 (예시, 본인 설정에 맞게 수정)</p><pre><button class="copy-btn">복사</button><code>- 소꿉친구 설정 삭제
+- {user}와 {char}는 오늘 처음 만나는 사이로 설정</code></pre></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">페소 설정을 더 자세하게 하고 싶은데 100자가 너무 적어요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>페소에는 이름·성별·나이만 넣고, 나머지 외모·성격·직업 등 상세 설정은 유저노트에 넣으면 된다.</p><p class="paste-note">↓ 유저노트에 붙여넣기 (예시)</p><pre><button class="copy-btn">복사</button><code>#페소
+- 이름: 김유진, 25세, 여성
+- 외모: 검정 긴 머리, 165cm, 안경
+- 성격: 겉으로 무뚝뚝, 내면 따뜻
+- 직업: 대학원 디자인과</code></pre></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">새 방 팔 때마다 유저노트·페소·모델 설정하는 게 귀찮아요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>내 프로필 → 채팅방 설정에서 기본값을 미리 설정해두면 새로 파는 방에 자동으로 적용된다. 페소, 유저노트, 출력량, 모델 모두 설정 가능하다.</p><p>단, 이미 생성되어 있는 기존 방에는 소급 적용되지 않는다.</p></div>
+  </div>
+</div>
+
+<div class="sec" id="qna-output">
+  <span class="sec-label">출력·분량</span>
+  <h2 class="st">출력·분량 관련</h2>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">출력이 중간에 잘려요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>채팅방 점 3개 메뉴 → 최대 출력량 조절에서 배율을 높인다. 1.5배 이상 설정 권장.</p><p>하이퍼챗은 한국어 출력량이 특히 적다. <strong>1.5배 + 유저노트에 6문단 제한</strong> 조합이 크래커를 아끼면서 안 잘리는 방법이다.</p><p class="paste-note">↓ 유저노트에 붙여넣기</p><pre><button class="copy-btn">복사</button><code># 출력 분량
+- 6문단 이하로 제한</code></pre><p>"이어서 생성" 버튼은 동일한 크래커를 소모하므로 처음부터 배율을 높이는 것이 이득이다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">같은 내용이 반복 출력돼요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>주로 서버 상태가 안 좋을 때 발생한다. <a href="https://rs.igx.kr/" target="_blank">https://rs.igx.kr/</a>에서 상태 확인 후 좋지 않으면 잠시 기다리거나 다른 모델로 변경한다.</p><p>유저노트에 반복 금지 지침을 추가하면 도움이 된다.</p><p class="paste-note">↓ 유저노트에 붙여넣기</p><pre><button class="copy-btn">복사</button><code>- No repeated phrases, scenes, or emotional beats from prior turns</code></pre></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">HUD/상태창이 상단에 나와서 본문이 잘려요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>유저노트에 아래를 기재하고 이전 3~5턴의 HUD를 직접 수정으로 삭제한다.</p><p class="paste-note">↓ 유저노트에 붙여넣기</p><pre><button class="copy-btn">복사</button><code># Must Follow
+- HUD&STATUS 최하단 출력 필수</code></pre><p>그래도 바뀌지 않으면 작가가 최상단에 강하게 고정해둔 것이다. 작가에게 문의하는 것이 정확하다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">효과음마다 — (em dash)가 들어가요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>유저노트에 아래를 기재한다.</p><p class="paste-note">↓ 유저노트에 붙여넣기</p><pre><button class="copy-btn">복사</button><code># Must Follow
+- em dash 금지</code></pre></div>
+  </div>
+</div>
+
+<div class="sec" id="qna-memory">
+  <span class="sec-label">기억력·요약</span>
+  <h2 class="st">기억력·요약 관련</h2>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">캐릭터가 초기 서사를 잊기 시작했어요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>150~200턴부터 AI가 초기 기억을 스킵하기 시작한다. 300턴 이상이 되면 임의로 창작하기도 한다. 중요한 초기 내용을 유저노트에 정리해두면 AI가 우선적으로 참고한다.</p><p class="paste-note">↓ 유저노트에 붙여넣기 (예시, 날짜·사건 본인 내용으로 수정)</p><pre><button class="copy-btn">복사</button><code>#정보
+- {char}와 3월 카페에서 처음 만남
+- 4월 벚꽃나무 아래서 고백</code></pre></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">!요약은 어떻게 사용하나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>채팅창에 <code>!요약</code>을 입력하면 된다. 작가 세팅에 따라 다를 수 있으니 플레이 가이드를 먼저 확인한다. 최근 신작은 채팅창 <code>/</code> 단축어 메뉴에서도 제공한다.</p><p>사용 후 삭제하지 않아도 된다. 결과를 유저노트에 기재해두면 기억력이 더 확실하게 유지된다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">캐릭터가 떨어진 공간의 유저 상황을 다 아는 것처럼 행동해요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>유저노트에 아래를 기재한다.</p><p class="paste-note">↓ 유저노트에 붙여넣기</p><pre><button class="copy-btn">복사</button><code># 공간 규칙
+- {char}는 현재 장면에 물리적으로 있을 때만 반응
+- 다른 공간의 표정·감정·반응 서술 금지
+- 간접 접촉(전화·문자) → {char}가 직접 수신한 내용만 인지</code></pre></div>
+  </div>
+</div>
+
+<div class="sec" id="qna-image">
+  <span class="sec-label">이미지</span>
+  <h2 class="st">이미지 관련</h2>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">이미지가 더 이상 안 나와요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>1. 해당 채팅에 <code>!점검 이미지</code>, <code>!이미지</code>, <code>!디버깅</code> 중 하나가 있다면 먼저 시도</p><p>2. 없다면 유저노트에 아래 기재 + 이전 3~5턴 이미지 직접 삭제</p><p class="paste-note">↓ 유저노트에 붙여넣기</p><pre><button class="copy-btn">복사</button><code>#Image rule
+- 각 응답당 최소 1개 이미지 출력 필수</code></pre><p>3. 그래도 안 되면 직전 메시지에서 분기 파기</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">이미지가 너무 많이 나와서 본문이 줄어들어요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>이미지도 출력 토큰에 포함된다. 이미지가 많을수록 본문 글자 수가 줄어든다.</p><p class="paste-note">↓ 유저노트에 붙여넣기</p><pre><button class="copy-btn">복사</button><code>#Image rule
+- 이미지 출력 금지</code></pre><p>기재 후 이전 3~5턴 이미지를 직접 삭제해야 확실하게 적용된다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">이미지 보관함에 잠긴 사진은 어떻게 해제하나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>작가가 설정한 조건을 달성하면 해제된다. <code>OOC : 모든 이미지를 출력해줘</code>를 입력하면 한꺼번에 나올 때가 있다. 조건이 궁금하다면 작가에게 댓글로 문의한다.</p></div>
+  </div>
+</div>
+
+<div class="sec" id="qna-branch">
+  <span class="sec-label">분기·새 방</span>
+  <h2 class="st">분기 & 새 방 이식 관련</h2>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">분기는 어떻게 사용하나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>원하는 채팅 메시지를 <strong>길게 누르면</strong> 삭제·복사·수정·분기 항목이 뜬다. 분기를 선택하면 처음부터 해당 시점까지의 요약 메모리가 복사된 새 방이 생성된다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">분기 방에서 작가의 최신 프롬을 반영할 수 있나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>가능하다. 채팅방 내 점 3개 메뉴 → <strong>업데이트 정보</strong>에서 확인. <strong>N</strong> 배지가 떠 있으면 새 프롬프트 버전이 있다는 의미이고, 업데이트를 누르면 현재 방에 최신 프롬이 적용된다.</p><p>단, 업데이트하면 <strong>이전 프롬으로 되돌릴 수 없다.</strong> 이미 많은 턴이 진행된 상태에서 프롬이 크게 바뀐 경우 충돌·오류가 날 수 있으므로, 큰 변경이라면 새 방을 파는 게 더 깔끔하다. 소소한 업데이트는 대체로 잘 먹힌다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">세이프 방에서 언셒으로 이식하는 방법이 있나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>기존 세이프 방에서 OOC로 서사를 요약한다. 요약 내용을 언셒 스토리의 첫 메시지와 유저노트에 붙여넣고 OOC로 이어서 진행을 요청하면 된다.</p></div>
+  </div>
+</div>
+
+<div class="sec" id="qna-error">
+  <span class="sec-label">오류·제보</span>
+  <h2 class="st">오류 & 제보 관련</h2>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">오류가 났을 때 크래커 환불 받는 방법은?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>오류 화면을 캡처한 뒤 <strong>프로필 → 고객센터 → 헬프데스크 → 우측 하단 빨간 채팅 버튼 → 유저</strong>로 제보한다. 모바일 앱에서 사진 첨부 안 되면 크롬에서 데스크톱 사이트로 접속 후 제보한다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">채팅에서 오타가 났을 때 수정할 수 있나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>보낸 채팅을 길게 누르면 수정·삭제 항목이 뜬다. 수정 후 다시하기(리롤) 버튼으로 새 답변을 받을 수 있지만 크래커는 동일하게 차감된다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">OOC나 명령어 사용 후 메시지 삭제해야 하나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>삭제하지 않아도 된다. AI가 이전 5~10턴을 참고하며 진행하기 때문에 OOC나 명령어 메시지가 남아있어도 RP에 큰 영향을 주지 않는다.</p></div>
+  </div>
+</div>
+
+<div class="sec" id="qna-misc">
+  <span class="sec-label">기타 설정</span>
+  <h2 class="st">기타 설정 관련</h2>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">AI 윤리 필터에 걸렸을 때 어떻게 하나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>① 다른 모델로 몇 턴 진행 후 다시 돌아온다</p><p>② 해당 장면 직전에서 분기를 파서 다른 흐름으로 진행한다</p><p>③ 페소 나이를 명확한 숫자로 기재하고, 이름이 어린아이 느낌이라면 변경을 고려한다</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">NPC가 자주 안 나와요.</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>유저노트에 아래를 기재한다. <code>{npc이름}</code> 부분에 원하는 NPC 이름을 직접 넣어도 된다.</p><p class="paste-note">↓ 유저노트에 붙여넣기</p><pre><button class="copy-btn">복사</button><code># Must Follow
+- {npc이름}와 유저 상호작용 매우 높음</code></pre></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">성인 인증은 어떻게 하나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>크랙 앱에서 <strong>본인계정 → 개인 맞춤 설정 → 장르별 성인작 보기</strong>를 클릭하면 인증 페이지로 넘어간다. 법적 성인만 인증 가능하다.</p></div>
+  </div>
+  <div class="qna-item">
+    <div class="qna-q" onclick="tq(this.parentElement)"><div class="qna-badge">Q</div><div class="qna-text">엔딩은 어떻게 보나요?</div><span class="qna-arr"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></span></div>
+    <div class="qna-a"><p>작가가 설정한 조건을 달성하면 엔딩이 해제된다. 5턴마다 체크, 최소 10~30턴 이상 진행 필요. 조건은 작가 댓글 또는 채팅 내 엔딩카드 → 엔딩 힌트에서 확인한다.</p></div>
+  </div>
+</div>
+
+</div><!-- end qna -->
+</main>
+
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-title">크랙 뉴비 가이드</div>
+    <div class="footer-meta">제작 <strong>눈꽃처럼 피어오르라</strong></div>
+    <div class="footer-desc">이 가이드는 눈꽃의 크랙 뉴비 가이드에 올라온 질문과 정보들을 바탕으로 만들어졌습니다.<br>잘못된 정보, 수정이 필요한 정보, 추가하고 싶은 정보가 있다면 크랙 뉴비 가이드 댓글에 달아주세요.</div>
+    <div class="footer-date">2026년 5월 26일 기준 정보</div>
+  </div>
+</footer>
+
+<style>
+#footer{margin-left:var(--side-w);border-top:1px solid var(--border);background:var(--surface);padding:28px 52px;transition:background .2s}
+.footer-inner{max-width:760px}
+.footer-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+.footer-meta{font-size:13px;color:var(--text2);margin-bottom:6px}
+.footer-meta strong{color:var(--accent)}
+.footer-desc{font-size:12.5px;color:var(--text3);margin-bottom:4px;line-height:1.6}
+.footer-date{font-size:12px;color:var(--text3)}
+@media(max-width:768px){#footer{margin-left:0;padding:24px 20px}}
+</style>
+
+<button id="top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+const html=document.documentElement;
+function setTheme(t){html.setAttribute('data-theme',t);localStorage.setItem('theme',t);document.getElementById('ti-l').style.display=t==='dark'?'none':'';document.getElementById('ti-d').style.display=t==='dark'?'':'none'}
+function toggleTheme(){setTheme(html.getAttribute('data-theme')==='dark'?'light':'dark')}
+(function(){setTheme(localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'))})();
+function switchTab(tab,btn){
+  document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(tab).classList.add('active');btn.classList.add('active');
+  document.getElementById('gnav').style.display=tab==='guide'?'':'none';
+  document.getElementById('qnav').style.display=tab==='qna'?'':'none';
+  document.querySelectorAll('.nl').forEach(l=>l.classList.remove('active'));
+  const f=tab==='guide'?document.querySelector('#gnav .nl'):document.querySelector('#qnav .nl');
+  if(f)f.classList.add('active');
+  window.scrollTo(0,0);doSearch()
+}
+function toggleMenu(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('overlay').classList.toggle('active')}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('overlay').classList.remove('active')}
+function nc(e,el){
+  e.preventDefault();
+  const sid=el.dataset.s;
+  const t=sid?document.getElementById(sid):null;
+  if(t){
+    const targetY=t.getBoundingClientRect().top+window.scrollY-76;
+    const maxY=document.body.scrollHeight-window.innerHeight;
+    window.scrollTo({top:Math.min(targetY,maxY),behavior:'smooth'});
+  }
+  document.querySelectorAll('.nl').forEach(l=>l.classList.remove('active'));
+  el.classList.add('active');closeSidebar()
+}
+function tc(h){const i=h.parentElement;i.classList.toggle('open');i.querySelector('.cmd-body').style.display=i.classList.contains('open')?'block':'none'}
+function tq(i){i.classList.toggle('open');i.querySelector('.qna-a').style.display=i.classList.contains('open')?'block':'none'}
+function doCopy(btn){
+  const code=btn.nextElementSibling;if(!code)return;
+  const text=code.innerText;
+  const ok=()=>{btn.textContent='복사됨!';btn.classList.add('copied');setTimeout(()=>{btn.textContent='복사';btn.classList.remove('copied')},2000)};
+  if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).then(ok).catch(()=>fallback(btn,text,ok))}
+  else{fallback(btn,text,ok)}
+}
+function fallback(btn,text,ok){
+  const ta=document.createElement('textarea');
+  ta.value=text;ta.style.cssText='position:fixed;top:-9999px;left:-9999px;opacity:0';
+  document.body.appendChild(ta);ta.focus();ta.select();
+  try{document.execCommand('copy');ok()}catch(e){btn.textContent='실패';setTimeout(()=>btn.textContent='복사',1500)}
+  document.body.removeChild(ta)
+}
+document.querySelectorAll('.copy-btn').forEach(btn=>btn.addEventListener('click',function(e){e.stopPropagation();doCopy(this)}));
+const searchEl=document.getElementById('search'),countEl=document.getElementById('search-count');
+function doSearch(){
+  const q=searchEl.value.trim().toLowerCase();
+  countEl.textContent='';
+  document.querySelectorAll('.hl').forEach(el=>el.outerHTML=el.textContent);
+  const tab=document.querySelector('.tab-content.active');
+  tab.querySelectorAll('.no-results').forEach(n=>n.remove());
+  if(!q){tab.querySelectorAll('.sec').forEach(s=>s.classList.remove('hidden-sec'));return}
+  const secs=tab.querySelectorAll('.sec');let vis=0;
+  secs.forEach(s=>{
+    if(s.textContent.toLowerCase().includes(q)){s.classList.remove('hidden-sec');vis++;hlText(s,q)}
+    else s.classList.add('hidden-sec')
+  });
+  if(!vis){const d=document.createElement('div');d.className='no-results';d.textContent='"'+searchEl.value+'"에 대한 결과가 없습니다.';tab.prepend(d)}
+  countEl.textContent=vis?vis+'건':''
+}
+function hlText(el,q){
+  const w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT);const ns=[];let n;
+  while(n=w.nextNode())ns.push(n);
+  ns.forEach(n=>{
+    const p=n.parentNode;
+    if('SCRIPT STYLE'.includes(p.tagName)||p.classList?.contains('hl'))return;
+    const i=n.textContent.toLowerCase().indexOf(q);
+    if(i>-1){
+      const f=document.createDocumentFragment();
+      f.appendChild(document.createTextNode(n.textContent.slice(0,i)));
+      const m=document.createElement('mark');m.className='hl';m.textContent=n.textContent.slice(i,i+q.length);f.appendChild(m);
+      f.appendChild(document.createTextNode(n.textContent.slice(i+q.length)));
+      p.replaceChild(f,n)
+    }
+  })
+}
+searchEl.addEventListener('input',doSearch);
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();searchEl.focus();searchEl.select()}
+  if(e.key==='Escape'&&document.activeElement===searchEl){searchEl.value='';doSearch();searchEl.blur()}
+});
+const pb=document.getElementById('progress');
+window.addEventListener('scroll',()=>{
+  const s=window.scrollY,d=document.body.scrollHeight-window.innerHeight;
+  pb.style.width=(s/d*100)+'%';
+  document.getElementById('top-btn').classList.toggle('show',s>400);
+  const tab=document.querySelector('.tab-content.active');
+  const secs=[...tab.querySelectorAll('.sec:not(.hidden-sec)')];
+  if(!secs.length)return;
+  let cur='';
+  const atBottom=s+window.innerHeight>=document.body.scrollHeight-16;
+  if(atBottom){
+    cur=secs[secs.length-1].id;
+  } else {
+    secs.forEach(sec=>{if(sec.getBoundingClientRect().top<140)cur=sec.id});
+  }
+  if(cur){
+    document.querySelectorAll('.nl').forEach(l=>l.classList.toggle('active',l.dataset.s===cur));
+    const activeLink=document.querySelector('.nl.active');
+    if(activeLink){
+      const sidebar=document.getElementById('sidebar');
+      const lTop=activeLink.offsetTop;
+      const sH=sidebar.offsetHeight;
+      const sTop=sidebar.scrollTop;
+      if(lTop<sTop+40||lTop>sTop+sH-60){
+        sidebar.scrollTo({top:lTop-sH/2,behavior:'smooth'});
+      }
+    }
+  }
+},{passive:true});
+</script>
+</body>
+</html>
